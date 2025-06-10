@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 const carme = Montserrat({
   subsets: ["latin"],
@@ -16,9 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={carme.className}>
       <body>
-        <div className="w-full min-h-screen">
+        <div className="w-full min-h-screen relative">
           <Navbar />
           {children}
+          <Toaster />
         </div>
       </body>
     </html>

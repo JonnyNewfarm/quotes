@@ -1,95 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-type Quote = {
-  id: number;
-  quote: string;
-  vote: number;
-  author: string;
-  tags: string[];
-};
+import TopFive from "@/components/TopFive";
+import SmoothScroll from "@/components/SmoothScroll";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
-  const [quotes, setQuotes] = useState<Quote[]>([]);
-
-  useEffect(() => {
-    fetch("https://python-flask-api-1-fih1.onrender.com/api/quotes")
-      .then((res) => res.json())
-      .then((data) => {
-        const topFive = data.quotes
-          .sort((a: Quote, b: Quote) => b.vote - a.vote)
-          .slice(0, 5);
-        setQuotes(topFive);
-      });
-  }, []);
-
-  const voteForQuote = (id: number) => {
-    fetch(`http://localhost:5000/api/quotes/${id}`, {
-      method: "POST",
-    })
-      .then((res) => {
-        if (!res.ok) {
-          return res.json().then((data) => {
-            alert(data.message || "Already voted");
-            throw new Error(data.message);
-          });
-        }
-        return res.json();
-      })
-      .then((updated: Quote) => {
-        setQuotes((prev) =>
-          prev
-            .map((q) => (q.id === id ? updated : q))
-            .sort((a, b) => b.vote - a.vote)
-            .slice(0, 5)
-        );
-      })
-      .catch((err) => console.error(err));
-  };
-
   return (
-    <div className="w-full min-h-screen text-[#2b2b2b] relative light-color flex justify-center items-center px-6 py-16">
-      <div className="w-full max-w-4xl p-8">
-        <h1 className="text-5xl mb-4">Top Five Quotes</h1>
-        <p className="text-lg text-gray-600 mb-8 max-w-xl">
-          Discover the most voted quotes from our collection. Vote for your
-          favorites!
-        </p>
-
-        <div className="space-y-6">
-          {quotes.map((q) => (
-            <div
-              key={q.id}
-              className="border-b pb-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4"
-            >
-              <div>
-                <p className="text-lg">&quot;{q.quote}&quot;</p>
-                <p className="text-sm text-gray-600">— {q.author}</p>
-                {q.tags && (
-                  <div className="flex gap-2 mt-1">
-                    {q.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="text-xs bg-white/60 px-2 py-0.5 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                <p className="text-sm mt-1">Votes: {q.vote}</p>
-              </div>
-              <button
-                onClick={() => voteForQuote(q.id)}
-                className="px-4 py-2 transition border-[1px] border-[#2b2b2b] cursor-pointer"
+    <SmoothScroll>
+      <div className="w-full relative min-h-screen text-[#2b2b2b] light-color flex justify-center flex-col items-center">
+        <div className="w-full h-[100vh]">
+          <div className="absolute w-full  h-screen top-0 ">
+            <Image
+              src={"/quest-bg4.jpg"}
+              alt="bg"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute bottom-0 w-full h-full bg-gradient-to-t from-[#2b2b2b] to-transparent z-10" />
+          </div>
+          <div className="flex  flex-col w-full h-full">
+            <div className="w-full text-white p-10 text-center h-full flex flex-col justify-center items-center">
+              <h1 className="z-50 mt-80 font-bold uppercase text-3xl  md:text-6xl max-w-3xl">
+                Your Words
+              </h1>
+              <h1 className="z-50  font-bold uppercase text-3xl  md:text-6xl max-w-3xl">
+                Your Weapon
+              </h1>
+              <Link
+                className="z-50 mt-5 text-xl border border-white py-2 px-4"
+                href={"/create"}
               >
-                Vote
-              </button>
+                Add Quote
+              </Link>
             </div>
-          ))}
+            <div className="w-full h-full font-bold lg:text-7xl text-xl  p-10 flex justify-between items-end text-white z-50">
+              <h1 className="z-50">QUOTE</h1>
+              <a href="#top-five" className="z-50 md:text-5xl text-lg">
+                TOP FIVE
+              </a>
+
+              <h1 className="z-50">BATTLE</h1>
+            </div>
+          </div>
         </div>
+
+        <TopFive />
       </div>
-    </div>
+    </SmoothScroll>
   );
 }

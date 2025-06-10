@@ -64,62 +64,64 @@ export default function PostQuotePage() {
 
   return (
     <div className="min-h-screen flex flex-col light-color items-center justify-center p-6">
-      <h1 className="text-4xl  mb-6">Post a New Quote</h1>
+      <div className="bg-white/50 p-10">
+        <h1 className="text-4xl  mb-6">Post a New Quote</h1>
 
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4 w-full max-w-md"
-      >
-        <textarea
-          value={quote}
-          onChange={(e) => setQuote(e.target.value)}
-          placeholder="Write your quote here..."
-          className="p-3 border border-stone-500 bg-white/80 rounded-[3px] resize-none"
-          rows={4}
-          required
-        />
-
-        <input
-          type="text"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          placeholder="Author"
-          className="p-3 border  border-stone-500 bg-white/80 rounded-[3px]"
-          required
-        />
-
-        <div>
-          <p className="mb-1 font-medium">Select 2 tags:</p>
-          <div className="flex flex-wrap gap-2">
-            {availableTags.map((tag) => (
-              <button
-                type="button"
-                key={tag}
-                onClick={() => toggleTag(tag)}
-                className={`px-3 py-1 first-letter:uppercase  border-stone-500 bg-white/80 rounded-[3px] cursor-pointer text-sm transition ${
-                  selectedTags.includes(tag)
-                    ? "bg-black text-white"
-                    : "bg-gray-100 text-black"
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          className=" py-2 px-4 rounded border-[#2b2b2b] border-[1px] cursor-pointer transition"
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 w-full max-w-md"
         >
-          Submit
-        </button>
+          <textarea
+            value={quote}
+            onChange={(e) => setQuote(e.target.value)}
+            placeholder="Write your quote here..."
+            className="p-3 border border-stone-500 bg-white/80 rounded-[3px] resize-none"
+            rows={4}
+            required
+          />
 
-        {success && (
-          <p className="text-[#476725]">Quote submitted successfully!</p>
-        )}
-        {error && <p className="text-red-600">{error}</p>}
-      </form>
+          <input
+            type="text"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            placeholder="Author"
+            className="p-3 border  border-stone-500 bg-white/80 rounded-[3px]"
+            required
+          />
+
+          <div>
+            <p className="mb-1 font-medium">Select 2 tags:</p>
+            <div className="flex flex-wrap gap-2">
+              {availableTags.map((tag) => (
+                <button
+                  type="button"
+                  key={tag}
+                  onClick={() => toggleTag(tag)}
+                  className={`px-3 py-1 first-letter:uppercase  border-stone-500 bg-white/80 rounded-[3px] cursor-pointer text-sm transition ${
+                    selectedTags.includes(tag)
+                      ? "bg-black text-white"
+                      : "bg-gray-100 text-black"
+                  }`}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className=" py-2 px-4 hover:bg-black hover:text-white border-[#2b2b2b] border-[1px] cursor-pointer transition"
+          >
+            Submit
+          </button>
+
+          {success && (
+            <p className="text-[#476725]">Quote submitted successfully!</p>
+          )}
+          {error && <p className="text-red-600">{error}</p>}
+        </form>
+      </div>
     </div>
   );
 }

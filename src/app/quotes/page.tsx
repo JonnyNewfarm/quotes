@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 type Quote = {
   id: number;
@@ -61,7 +62,7 @@ export default function QuotesPage() {
 
       if (!res.ok) {
         const errData = await res.json();
-        alert(errData.message || "Error voting for quote");
+        toast(errData.message || "Error voting for quote");
         return;
       }
 
@@ -72,13 +73,13 @@ export default function QuotesPage() {
       );
     } catch (error) {
       console.error("Vote failed:", error);
-      alert("Failed to vote, please try again later.");
+      toast("Failed to vote, please try again later.");
     }
   };
 
   return (
     <div className="min-h-screen p-10 light-color">
-      <div className="mb-6">
+      <div className="mb-6 mt-20">
         <h1 className="text-2xl font-semibold">Quotes</h1>
         <p>Page {currentPage}</p>
       </div>

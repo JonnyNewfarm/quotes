@@ -3,8 +3,8 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="w-full light-color uppercase sticky top-0  z-50 p-16 flex justify-between font-bold text-sm   md:text-2xl py-7 items-center">
-      <Link className="whitespace-nowrap" href={"/"}>
+    <div className="w-full uppercase fixed top-0  z-50 p-5 flex justify-between  text-[12px] gap-x-3 md:px-16   md:text-2xl py-7 items-center">
+      <Link className="whitespace-nowrap font-semibold" href={"/"}>
         Quote Battle
       </Link>
 
