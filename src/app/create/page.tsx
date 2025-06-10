@@ -36,17 +36,20 @@ export default function PostQuotePage() {
       return;
     }
 
-    const res = await fetch("http://localhost:5000/api/quotes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        quote,
-        author,
-        tags: selectedTags,
-      }),
-    });
+    const res = await fetch(
+      "https://python-flask-api-1-fih1.onrender.com/api/quotes",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          quote,
+          author,
+          tags: selectedTags,
+        }),
+      }
+    );
 
     if (res.ok) {
       setQuote("");

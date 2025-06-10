@@ -14,7 +14,7 @@ export default function HomePage() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/quotes")
+    fetch("https://python-flask-api-1-fih1.onrender.com/api/quotes")
       .then((res) => res.json())
       .then((data) => {
         const topFive = data.quotes

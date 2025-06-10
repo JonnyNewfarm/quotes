@@ -28,7 +28,7 @@ export default function QuotesPage() {
   useEffect(() => {
     const fetchQuotes = async () => {
       const res = await fetch(
-        `http://localhost:5000/api/quotes?page=${currentPage}&limit=${quotesPerPage}`
+        `https://python-flask-api-1-fih1.onrender.com/api/quotes?page=${currentPage}&limit=${quotesPerPage}`
       );
       const data = await res.json();
       setQuotes(data.quotes);
