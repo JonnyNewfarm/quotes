@@ -38,7 +38,6 @@ export default function QuotesPage() {
     fetchQuotes();
   }, [currentPage]);
 
-  // Filter quotes by selected tags (if any)
   const filteredQuotes = selectedTags.length
     ? quotes.filter((quote) =>
         quote.tags?.some((tag) => selectedTags.includes(tag))
@@ -47,15 +46,13 @@ export default function QuotesPage() {
 
   const totalPages = Math.ceil(totalQuotes / quotesPerPage);
 
-  // Tag toggle handler
   const toggleTag = (tag: string) => {
-    setCurrentPage(1); // reset page on filter change
+    setCurrentPage(1);
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
-  // Vote handler
   const voteForQuote = async (id: number) => {
     try {
       const res = await fetch(`http://localhost:5000/api/quotes/${id}`, {
@@ -110,7 +107,6 @@ export default function QuotesPage() {
         )}
       </div>
 
-      {/* Quotes list */}
       <div className="space-y-6">
         {filteredQuotes.length === 0 ? (
           <p>No quotes match your selected tags.</p>
@@ -148,7 +144,6 @@ export default function QuotesPage() {
         )}
       </div>
 
-      {/* Pagination Controls */}
       <div className="mt-8 flex gap-4">
         <button
           disabled={currentPage === 1}
