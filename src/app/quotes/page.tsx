@@ -70,7 +70,6 @@ export default function QuotesPage() {
 
       const updatedQuote: Quote = await res.json();
 
-      // Update quotes state with new vote count
       setQuotes((prevQuotes) =>
         prevQuotes.map((q) => (q.id === id ? updatedQuote : q))
       );
@@ -87,7 +86,6 @@ export default function QuotesPage() {
         <p>Page {currentPage}</p>
       </div>
 
-      {/* Tag filters */}
       <div className="mb-6 flex flex-wrap gap-3">
         {availableTags.map((tag) => (
           <button
@@ -123,7 +121,7 @@ export default function QuotesPage() {
               className="border-b pb-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4"
             >
               <div>
-                <p className="text-lg">"{q.quote}"</p>
+                <p className="text-lg">&quot;{q.quote}&quot;</p>
                 <p className="text-sm text-gray-600">— {q.author}</p>
                 {q.tags && (
                   <div className="flex gap-2 mt-1">

@@ -64,7 +64,7 @@ export default function HomePage() {
               className="border-b pb-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4"
             >
               <div>
-                <p className="text-lg">"{q.quote}"</p>
+                <p className="text-lg">&quot;{q.quote}&quot;</p>
                 <p className="text-sm text-gray-600">— {q.author}</p>
                 {q.tags && (
                   <div className="flex gap-2 mt-1">

@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
-import { Carme, Montserrat, Mulish, Nunito } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
 const carme = Montserrat({
   subsets: ["latin"],
