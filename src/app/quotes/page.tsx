@@ -38,7 +38,7 @@ export default function QuotesPage() {
         const data = await res.json();
         setQuotes(data.quotes);
         setTotalQuotes(data.total);
-      } catch (err) {
+      } catch {
         toast("Failed to fetch quotes.");
       } finally {
         setLoading(false);
