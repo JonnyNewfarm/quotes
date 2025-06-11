@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import Footer from "@/components/Footer";
 
 const carme = Montserrat({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Toaster />
+          <Footer />
         </div>
       </body>
     </html>

@@ -19,21 +19,30 @@ const availableTags = [
   "love",
   "wisdom",
 ];
+
 export default function QuotesPage() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalQuotes, setTotalQuotes] = useState(0);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
   const quotesPerPage = 10;
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      const res = await fetch(
-        `https://python-flask-api-1-fih1.onrender.com/api/quotes?page=${currentPage}&limit=${quotesPerPage}`
-      );
-      const data = await res.json();
-      setQuotes(data.quotes);
-      setTotalQuotes(data.total);
+      setLoading(true);
+      try {
+        const res = await fetch(
+          `https://python-flask-api-1-fih1.onrender.com/api/quotes?page=${currentPage}&limit=${quotesPerPage}`
+        );
+        const data = await res.json();
+        setQuotes(data.quotes);
+        setTotalQuotes(data.total);
+      } catch (err) {
+        toast("Failed to fetch quotes.");
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchQuotes();
@@ -77,6 +86,14 @@ export default function QuotesPage() {
     }
   };
 
+  const Skeleton = () => (
+    <div className="animate-pulse flex gap-x-5 space-y-4">
+      {[...Array(5)].map((_, i) => (
+        <div key={i} className="h-[20px] w-[20px]  bg-stone-800 rounded-full" />
+      ))}
+    </div>
+  );
+
   return (
     <div className="min-h-screen p-10 light-color">
       <div className="mb-6 mt-20">
@@ -109,7 +126,9 @@ export default function QuotesPage() {
       </div>
 
       <div className="space-y-6">
-        {filteredQuotes.length === 0 ? (
+        {loading ? (
+          <Skeleton />
+        ) : filteredQuotes.length === 0 ? (
           <p>No quotes match your selected tags.</p>
         ) : (
           filteredQuotes.map((q) => (
