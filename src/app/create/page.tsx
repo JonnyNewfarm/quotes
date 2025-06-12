@@ -64,7 +64,7 @@ export default function PostQuotePage() {
 
   return (
     <div className="min-h-screen flex flex-col light-color items-center justify-center p-6">
-      <div className="bg-white/50 p-10">
+      <div className="bg-white/50 p-10 mt-20 sm:mt-4">
         <h1 className="text-4xl  mb-6">Post a New Quote</h1>
 
         <form

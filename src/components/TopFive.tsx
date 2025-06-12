@@ -29,7 +29,7 @@ const TopFive = () => {
   }, []);
 
   const voteForQuote = (id: number) => {
-    fetch(`http://localhost:5000/api/quotes/${id}`, {
+    fetch(`https://python-flask-api-1-fih1.onrender.com/api/quotes/${id}`, {
       method: "POST",
     })
       .then((res) => {
@@ -63,7 +63,7 @@ const TopFive = () => {
   return (
     <div
       id="top-five"
-      className="w-full left-0 max-w-4xl light-color mt-16 p-8"
+      className="w-full left-0 max-w-4xl text-[#171414] light-color mt-16 p-8"
     >
       <h1 className="text-5xl mb-4 font-semibold">Top Five Quotes</h1>
       <p className="text-lg text-gray-600 mb-8 max-w-xl">

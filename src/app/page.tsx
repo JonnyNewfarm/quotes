@@ -3,8 +3,9 @@
 import TopFive from "@/components/TopFive";
 import SmoothScroll from "@/components/SmoothScroll";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import MagneticComp from "@/components/MagneticComp";
 
 export default function HomePage() {
   return (
@@ -13,16 +14,22 @@ export default function HomePage() {
         <div className="w-full h-[100vh]">
           <div className="absolute w-full h-screen top-0">
             <Image
+              style={{
+                maskImage:
+                  "linear-gradient(to bottom, white 70%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, white 90%, transparent 100%)",
+                maskSize: "100% 100%",
+                WebkitMaskSize: "100% 100%",
+              }}
               src={"/quest-bg4.jpg"}
               alt="bg"
               fill
-              className="object-cover"
+              className="object-cover "
             />
-            <div className="absolute bottom-0 w-full h-full bg-gradient-to-t from-[#2b2b2b] to-transparent z-10" />
           </div>
 
           <div className="flex flex-col w-full h-full">
-            {/* Center Text */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{
@@ -30,64 +37,53 @@ export default function HomePage() {
                 opacity: [0, 1, 1],
               }}
               transition={{
-                duration: 0.4,
+                duration: 0.7,
                 times: [0, 0.4, 1],
                 ease: "easeInOut",
               }}
-              className="w-full text-white p-10 text-center h-full flex flex-col justify-center items-center"
+              className="w-full  p-10 text-center h-full flex flex-col justify-center items-center"
             >
-              <h1 className="z-50 mt-80 font-bold uppercase text-3xl md:text-6xl max-w-3xl">
+              <h1 className="z-50 mt-60 font-bold uppercase text-2xl md:text-4xl max-w-3xl">
                 Your Words
               </h1>
-              <h1 className="z-50 font-bold uppercase text-3xl md:text-6xl max-w-3xl">
+              <h1 className="z-50 font-bold uppercase text-3xl md:text-5xl max-w-3xl">
                 Your Weapon
               </h1>
-              <Link
-                className="z-50 mt-5 text-xl border border-white py-2 px-4"
-                href={"/create"}
-              >
-                Add Quote
-              </Link>
             </motion.div>
 
-            {/* Bottom Mask-Reveal Text */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.2,
-                    delayChildren: 1,
-                  },
-                },
-              }}
-              className="w-full h-full font-bold lg:text-7xl text-xl p-10 flex justify-between items-end text-white z-50"
-            >
-              {["QUOTE", "TOP FIVE", "BATTLE"].map((word, i) => (
-                <motion.div key={i} className="overflow-hidden">
-                  <motion.h1
-                    initial={{ y: "100%" }}
-                    animate={{ y: 0 }}
-                    transition={{
-                      duration: 0.8,
-                      ease: [0.76, 0, 0.24, 1],
-                    }}
-                    className={`z-50 ${
-                      word === "TOP FIVE" ? "cursor-pointer" : ""
-                    }`}
+            <motion.div className="w-full h-full font-bold lg:text-5xl md:text-2xl text-xl p-10 flex justify-between items-end  z-50">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{
+                  scale: [0.6, 1],
+                  opacity: [0, 1, 1],
+                }}
+                transition={{
+                  duration: 0.8,
+                  times: [0, 0.4, 1],
+                  ease: "easeInOut",
+                }}
+                className="flex w-full justify-between"
+              >
+                <MagneticComp>
+                  <Link className="whitespace-nowrap " href={"/create"}>
+                    ADD QUOTE
+                  </Link>
+                </MagneticComp>
+                <MagneticComp>
+                  <a
+                    href="#top-five"
+                    className="whitespace-nowrap hidden sm:block"
                   >
-                    {word === "TOP FIVE" ? (
-                      <a href="#top-five" className="z-50 md:text-5xl text-lg">
-                        {word}
-                      </a>
-                    ) : (
-                      word
-                    )}
-                  </motion.h1>
-                </motion.div>
-              ))}
+                    TOP FIVE
+                  </a>
+                </MagneticComp>
+                <MagneticComp>
+                  <Link href={"quotes"} className="whitespace-nowrap">
+                    ALL QUOTES
+                  </Link>
+                </MagneticComp>
+              </motion.div>
             </motion.div>
           </div>
         </div>

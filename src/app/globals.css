@@ -11,5 +11,5 @@ body::-webkit-scrollbar {
 }
 
 .light-color {
-    background: #f0e9df
+    background: hsl(0, 8%, 92%)
 }

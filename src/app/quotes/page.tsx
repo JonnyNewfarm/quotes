@@ -65,9 +65,12 @@ export default function QuotesPage() {
 
   const voteForQuote = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/quotes/${id}`, {
-        method: "POST",
-      });
+      const res = await fetch(
+        `https://python-flask-api-1-fih1.onrender.com/api/quotes/${id}`,
+        {
+          method: "POST",
+        }
+      );
 
       if (!res.ok) {
         const errData = await res.json();
