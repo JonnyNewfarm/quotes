@@ -18,7 +18,7 @@ export default function HomePage() {
                 maskImage:
                   "linear-gradient(to bottom, white 70%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, white 90%, transparent 100%)",
+                  "linear-gradient(to bottom, white 80%, transparent 100%)",
                 maskSize: "100% 100%",
                 WebkitMaskSize: "100% 100%",
               }}
